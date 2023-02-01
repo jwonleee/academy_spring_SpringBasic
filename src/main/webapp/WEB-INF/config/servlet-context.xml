@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 어노테이션기능으로 핸들러맵핑, 어뎁터를 구현 -->
+	<annotation-driven />
+
+	<!-- 정적파일 경로 맵핑 -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- 뷰 리졸버 - 컨트롤러에서 돌아오는 뷰의 경로를 전체경로로 변경 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 패키지를 읽어서 @Controller를 빈으로 생성 -->
+	<context:component-scan base-package="com.simple.controller" />
+	
+	
+</beans:beans>
