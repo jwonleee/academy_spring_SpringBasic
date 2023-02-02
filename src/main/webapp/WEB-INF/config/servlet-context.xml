@@ -20,7 +20,24 @@
 	</beans:bean>
 	
 	<!-- 패키지를 읽어서 @Controller를 빈으로 생성 -->
+	<!-- ▼ 해당하는 패키지 전부 읽어서 빈으로 등록이 됨 -->
+	<context:component-scan base-package="com.simple.*"></context:component-scan>
+	
+	<!--
 	<context:component-scan base-package="com.simple.controller" />
+	<context:component-scan base-package="com.simple.score.service"/> 3rd - @Sevice만 쓰는게 아니라 이걸 해줘야 빈이 생성이 됨
+	-->
+	
+	<!-- 2nd - service 영역을 빈으로 생성 -->
+	<!-- 
+	<beans:bean class="com.simple.score.service.ScoreServiceImpl"/>
+	 -->
+	 
+	 
+	
+	
+	
+	
 	
 	
 </beans:beans>
