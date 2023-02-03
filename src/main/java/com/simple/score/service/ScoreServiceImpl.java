@@ -3,6 +3,7 @@ package com.simple.score.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,7 @@ import com.simple.score.dao.ScoreDAO;
 public class ScoreServiceImpl implements ScoreService {
 
 	@Autowired //의존성 주입
+	@Qualifier("yyy")
 	private ScoreDAO scoreDAO; //정확한 타입 들어감, ScoreDAO는 com.simple.score.dao.ScoreDAO임
 	
 	@Override

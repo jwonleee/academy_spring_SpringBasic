@@ -1,8 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<!-- 데이터베이스 연결은 가장 처음에, 전역에서 사용되도록 해야 하기때문에 servlet-context가 아닌 root-context에 해야함 -->
+	
+	<!-- 데이터베이스 정보는 외부 파일로 관리 -->
+	<!-- classpath:/  자바/리소스 경로를 가르킵니다 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:/DB-config/hikari.properties"></property>
+	</bean>
+	
+	<!-- 데이터베이스 설정: mysql -->
+	<!-- <bean id="hikari" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="jdbcUrl" 		 value="jdbc:mysql://localhost:3306/spring?serverTimezone=Asia/Seoul"></property>
+		<property name="username" 		 value="spring"/>
+		<property name="password" 		 value="spring"/>
+	</bean> -->
+	
+	<!-- 데이터베이스 설정: DataSource와 HikariCP 빈으로 등록 -->
+	<bean id="hikari" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="${ds.driverClassName}"></property>
+		<property name="jdbcUrl" 		 value="${ds.jdbcUrl}"></property>
+		<property name="username" 		 value="${ds.username}"/>
+		<property name="password" 		 value="${ds.password}"/>
+	</bean>
+	
+	<!-- 데이터베이스 설정: 오라클 -->
+	<!-- <bean id="hikari" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl" 		 value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" 		 value="jsp"/>
+		<property name="password" 		 value="jsp"/>
+	</bean> -->
+	
+	<!-- 데이터베이스 정보를 주입 -->
+	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
+      <constructor-arg ref="hikari"/>
+    </bean>
+    
+    <!-- 마이바티스 설정 sqlSessionFactory 빈으로 생성 -->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<!-- 데이터베이스 정보 전달 -->
+    	<property name="dataSource" ref="ds" /> <!-- bean객체 주입 -->
+    </bean>
+    
+    <!-- 마이바티스 관련 어노테이션을 찾아서 설정으로 등록 -->
+    <mybatis-spring:scan base-package="com.simple.basic.mapper"/>
+	
 </beans>
+

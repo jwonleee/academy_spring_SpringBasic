@@ -14,11 +14,11 @@
 	
 	<!-- 인덱스번호 찍으려면 varStatus써서 그 안의 index찍어보면 됨 -->
 	<c:forEach var="article" items="${list}" varStatus="num">
-		${num.index }
+		${article.num }
 		${article.name }
 		${article.kor }
 		${article.eng }
-		<a href="delete?num=${num.index }">삭제</a> <!-- 원래 삭제는 post 방식임 -->
+		<a href="delete?num=${article.num }">삭제</a> <!-- 원래 삭제는 post 방식임 -->
 		<br/>
 	</c:forEach>
 

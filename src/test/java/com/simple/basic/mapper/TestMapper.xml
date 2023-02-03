@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 인터페이스의 풀경로를 적습니다. -->
+<mapper namespace="com.simple.basic.mapper.TestMapper"> <!-- 내가 실행시킬 풀 경로 -->
+
+	<!-- id는 인터페이스의 메서드명 resultType=반환타입  -->
+	<select id="getTime" resultType="string">
+		select now()
+	
+	</select>
+	
+
+</mapper>
+  
