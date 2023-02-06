@@ -9,9 +9,57 @@
 	<!-- id는 인터페이스의 메서드명 resultType=반환타입  -->
 	<select id="getTime" resultType="string">
 		select now()
-	
 	</select>
 	
-
+	<!-- ; 은 없습니다 -->
+	<!-- 한 행에 대한 처리를 할 데이터 타입 (풀경로) -->
+	<select id="getScore" resultType="ScoreVO">
+		select * from score
+	</select>
+	
+	<!-- 매개변수 - 단일값 -->
+	<select id="getOne" resultType="ScoreVO">
+		select * from score where num = #{a}
+	</select>
+	
+	
+	<!-- insert -->
+	<!-- parameterType - 매개변수의 타입(생략가능) -->
+	<insert id="insertOne" parameterType="String">
+		insert into score(name) values(#{name})
+	</insert>
+	
+	<insert id="insertTwo" parameterType="com.simple.command.ScoreVO"> <!-- 여기는 풀 경로 적어준 것 -->
+		insert into score(name, kor, eng)
+		values(#{name}, #{kor}, #{eng})
+	</insert>
+	
+	<insert id="insertThree"> <!-- 여기서는 파라미터타입 생략했음 -->
+		insert into score(name, kor, eng)
+		values(#{name}, #{kor}, #{eng})
+	</insert>
+	
+	<select id="selectMap" resultType="map" parameterType="int">
+		select * from score where num = #{num}
+	</select>
+	
+	<select id="selectTwo" resultType="map">
+		score * from score
+	</select>
+	
+	<!-- alias 설정이 있다면 parameter, result타입에 단축명으로 사용 가능합니다. -->
+	<update id="updateOne" parameterType="ScoreVO">
+		update score
+		set name = #{name},
+			kor = #{kor},
+			eng = #{eng}
+		where num = #{num}
+	</update>
+	
+	
+	<insert id="insertFour">
+		insert into score(name, kor) values(#{변수명1}, #{변수명2})
+	</insert>
+	
 </mapper>
   

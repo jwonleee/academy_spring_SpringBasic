@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.simple.command.ScoreVO;
 import com.simple.score.service.ScoreService;
-import com.simple.score.service.ScoreServiceImpl;
 
 @Controller
 @RequestMapping("/service")
@@ -22,6 +21,7 @@ public class ServiceController {
 	//ScoreServiceImpl service = new ScoreServiceImpl();
 	
 	//2nd - service를 bean으로 생성한다. 의존객체 자동주입
+	//ScoreServiceImpl service;
 	
 	//3rd - @Service로 빈을 생성하고, 의존객체 자동주입
 	@Autowired

@@ -50,5 +50,11 @@ public class ScoreVO {
 	public void setEng(String eng) {
 		this.eng = eng;
 	}
+
+	@Override
+	public String toString() {
+		return "ScoreVO [num=" + num + ", name=" + name + ", kor=" + kor + ", eng=" + eng + "]";
+	}
+	
 	
 }

@@ -5,7 +5,7 @@
 	<groupId>com.simple</groupId>
 	<artifactId>basic</artifactId>
 	<name>SpringBasic</name>
-	<packaging>war</packaging>
+    <packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
 	<!-- 컨택스트 패스 변경 - artifactId를 변경, 톰캣의 module에서 변경 -->

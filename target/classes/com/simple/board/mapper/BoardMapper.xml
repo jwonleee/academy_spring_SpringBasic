@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.simple.board.mapper.BoardMapper">
+  	<insert id="boardRegist">
+  		insert into board(name, title, content)
+  		values(#{name}, #{title}, #{content})
+  	</insert>
+  	
+  	<select id="getList" resultType="BoardVO">
+  		select * from board order by num desc
+  	</select>
+  	
+  	<delete id="boardDelete">
+  		delete from board where num = #{num}
+  	</delete>
+  	
+  </mapper>
